@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost',
+    'url' => 'https://sistema-braulio.herokuapp.com',
 
     /*
     |--------------------------------------------------------------------------
