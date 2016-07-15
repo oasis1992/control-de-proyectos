@@ -1,0 +1,16 @@
+.hidden{
+	display: none;
+}
+
+.green-extension{
+	background-color:#5cb85c;
+	color:white;
+}
+
+.section-info-panel{
+	margin-top: 40px;
+}
+
+.project-finally{
+	background-color:#d9534f;
+}
