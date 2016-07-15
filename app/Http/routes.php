@@ -102,6 +102,17 @@ Route::group(['middleware' =>['web' /*,'auth'*/],'prefix'=>'admin'], function(){
         'as'   =>   'admin.financing.store'
     ]);
 
+    Route::get('financing/destroy/{id}/{project_id}',[
+        'uses' =>   'FinancingController@destroy',
+        'as'   =>   'admin.financing.destroy'
+    ]);
+
+    /* eliminar colaborador en el panel */
+
+    Route::get('contributor/destroy/{id}/{project_id}',[
+        'uses' =>   'ProjectsController@destroyContributorPanel',
+        'as'   =>   'admin.contributor.destroy.panel'
+    ]);
 });
 
 

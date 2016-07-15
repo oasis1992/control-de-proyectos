@@ -30,7 +30,7 @@ class FinancingController extends Controller
         $financing->institution_id = $request->institution_id;
         $financing->save();
         
-        return redirect('proyectos/'.$request->project_id.'/panel');
+        return redirect('admin/proyectos/'.$request->project_id.'/panel');
     }
 
     public function edit($id){
@@ -41,7 +41,9 @@ class FinancingController extends Controller
 
     }
 
-    public function destroy($id){
-
+    public function destroy($id, $project_id){
+        $financing = Financing::find($id);
+        $financing->delete();
+        return redirect('admin/proyectos/'.$project_id.'/panel');
     }
 }

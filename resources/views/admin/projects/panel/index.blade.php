@@ -6,11 +6,11 @@
 
 	<h3>Proyecto para el cuidado del medio ambiente</h3>
 	<div class="text-right">
-		@if($project->status->name == "Aprobado")
+		@if($project->status->name == "Vigente")
 			<span class="label label-success">{{ $project->status->name }}</span>
 		@endif
 
-		@if($project->status->name == "En proceso")
+		@if($project->status->name == "No vigente")
 				<span class="label label-warning">{{ $project->status->name }}</span>
 		@endif
 
@@ -18,10 +18,13 @@
 				<span class="label label-danger">{{ $project->status->name }}</span>
 		@endif
 
-		{{--<span class="label label-default">Status</span> --}}
-		{{--<span class="label label-primary">Status</span>--}}
+		@if($project->status->name == "No aprobado")
+			<span class="label label-default">{{ $project->status->name }}</span>
+		@endif
+		@if($project->status->name == "Concluido")
+			<span class="label label-primary">{{ $project->status->name }}</span>
+		@endif
 
-		{{--<span class="label label-info">Status</span>--}}
 	</div>
 
 	<br>
@@ -83,6 +86,8 @@
 					<div class="panel-heading">Financiamiento</div>
 					<div class="panel-body">
 						<a class="btn btn-default" href="{{ route("admin.financing.create", $project->id)}}">Nuevo financiamiento</a>
+						<br>
+						<br>
 						<ul class="list-group">
 							<li class="list-group-item">Interno: $ {{ $interno }}</li>
 							<li class="list-group-item">Externo: $ {{$externo}}</li>
@@ -131,7 +136,7 @@
 								<td>{{ $contributor->type }}</td>
 								<td>
 									<a class="" onclick="return confirm('¿Seguro que desea eliminarlo?')" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
-									<a class="" onclick="return confirm('¿Seguro que desea eliminarlo?')" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+									{{--<a class="" onclick="return confirm('¿Seguro que desea eliminarlo?')" href="{{ route('admin.contributor.destroy.panel', ['id' => $contributor->id, 'project_id' => $project->id]) }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>--}}
 								</td>
 							</tr>
 						@endforeach
@@ -179,7 +184,7 @@
 							<td>{{ $financing->institution->type }}</td>
 							<td>
 								<a class="" href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
-								<a class="" onclick="return confirm('¿Seguro que desea eliminarlo?')" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+								<a class="" onclick="return confirm('¿Seguro que desea eliminarlo?')" href="{{ route("admin.financing.destroy", ['id'=> $financing->id, 'project_id'=> $project->id]) }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 							</td>
 						</tr>
 					@endforeach

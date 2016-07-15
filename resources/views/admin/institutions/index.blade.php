@@ -12,6 +12,7 @@
             <th data-field="id">ID</th>
             <th data-field="name">Nombre</th>
             <th data-field="name">Tipo</th>
+            <th data-field="name">Opciones</th>
         </tr>
 
         <tbody>

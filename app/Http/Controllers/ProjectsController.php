@@ -21,6 +21,48 @@ class ProjectsController extends Controller
      */
     public function index(Request $request)
     {
+        /*$type1 = new TypeProject();
+        $type1->name = "Invitación";
+        $type1->save();
+
+        $type1 = new TypeProject();
+        $type1->name = "Institucional";
+        $type1->save();
+
+        $type1 = new TypeProject();
+        $type1->name = "Interno";
+        $type1->save();
+
+
+        $type1 = new TypeProject();
+        $type1->name = "Doctorado";
+        $type1->save();
+
+
+        $type1 = new TypeProject();
+        $type1->name = "Otro";
+        $type1->save();
+
+        $status = new Status();
+        $status->name = "Vigente";
+        $status->save();
+
+        $status = new Status();
+        $status->name = "No vigente";
+        $status->save();
+
+        $status = new Status();
+        $status->name = "Concluido";
+        $status->save();
+
+        $status = new Status();
+        $status->name = "No aprobado";
+        $status->save();
+
+        $status = new Status();
+        $status->name = "Cancelado";
+        $status->save();*/
+
         $projects = Project::Search($request->title)->orderBy('id','ASC')->paginate(25);
         $projects->each(function($projects) {
             $projects->typeProject;
@@ -153,4 +195,20 @@ class ProjectsController extends Controller
         $project->contributors();
             return redirect()->to('admin/proyectos/'.$project->id.'/panel');
     }
+
+
+    /* comentado por si se llegara a requerir el metodo */
+//    public function destroyContributorPanel($id, $project_id){
+//        $project = Project::find($project_id);
+//        $project->contributors;
+//        foreach ($project->contributors as $contributor){
+//            if($contributor->id == $id){
+//                $contributor->delete();
+//            }
+//        }
+//     //   dd($project);
+//        //$contributor = Contributor::find($id);
+//      //  $contributor->delete();
+//        return redirect('admin/proyectos/'.$project_id.'/panel');
+//    }
 }
