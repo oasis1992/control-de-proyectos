@@ -37,4 +37,24 @@ class Project extends Model
     {
         return $query->where('title','LIKE', "%$title%");
     }
+
+    public function books(){
+        return $this->hasMany('App\Book');
+    }
+
+    public function cap_books(){
+        return $this->hasMany('App\CapBook');
+    }
+
+    public function articles_difution(){
+        return $this->hasMany('App\ArticleDifution');
+    }
+
+    public function articles_investigtion(){
+        return $this->hasMany('App\ArticleInvestigation');
+    }
+
+    public function advises_theses(){
+        return $this->hasMany('App\AdvisedTheses');
+    }
 }
