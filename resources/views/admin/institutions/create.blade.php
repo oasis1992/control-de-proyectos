@@ -4,7 +4,6 @@
 
 @section('content')
     {!! Form::open(['route' => 'admin.institution.store', 'method' => 'POST']) !!}
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
             {!! Form::label('name','Nombre institucion') !!}
             {!! Form::text('name',null,['class'=>'form-control']) !!}

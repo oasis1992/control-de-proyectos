@@ -5,7 +5,6 @@
 @section('content')
 
 	{!! Form::open(['route' => 'admin.proyectos.store', 'method' => 'POST']) !!}
-	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<div class="panel panel-primary">
 		  <div class="panel-heading">Proyecto</div>
 		  <div class="panel-body">

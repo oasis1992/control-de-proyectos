@@ -63,6 +63,7 @@ class ProjectsController extends Controller
         $status->name = "Cancelado";
         $status->save();*/
 
+
         $projects = Project::Search($request->title)->orderBy('id','ASC')->paginate(25);
         $projects->each(function($projects) {
             $projects->typeProject;
@@ -165,7 +166,11 @@ class ProjectsController extends Controller
 
         $total = $interno + $externo;
 
-        return View('admin.projects.panel.index')->with('project', $project)->with('interno', $interno)->with('externo',$externo)->with('total', $total);
+        $status = Status::get()->lists('name','id');
+        return View('admin.projects.panel.index')->with('project', $project)->with('interno', $interno)
+            ->with('externo',$externo)
+            ->with('total', $total)
+            ->with('status', $status);
     }
 
     public function edit_collaboratores($id){
@@ -196,19 +201,4 @@ class ProjectsController extends Controller
             return redirect()->to('admin/proyectos/'.$project->id.'/panel');
     }
 
-
-    /* comentado por si se llegara a requerir el metodo */
-//    public function destroyContributorPanel($id, $project_id){
-//        $project = Project::find($project_id);
-//        $project->contributors;
-//        foreach ($project->contributors as $contributor){
-//            if($contributor->id == $id){
-//                $contributor->delete();
-//            }
-//        }
-//     //   dd($project);
-//        //$contributor = Contributor::find($id);
-//      //  $contributor->delete();
-//        return redirect('admin/proyectos/'.$project_id.'/panel');
-//    }
 }
