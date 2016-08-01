@@ -4,7 +4,6 @@
 
 @section('content')
     {!! Form::open(['route' => 'admin.financing.store', 'method' => 'POST']) !!}
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="hidden" name="project_id" value="{{ $project->id }}">
     <div class="form-group">
         {!! Form::label('name','Nombre financiamiento') !!}

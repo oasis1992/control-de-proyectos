@@ -6,25 +6,37 @@
 
 	<h3>Proyecto para el cuidado del medio ambiente</h3>
 	<div class="text-right">
-		@if($project->status->name == "Vigente")
-			<span class="label label-success">{{ $project->status->name }}</span>
-		@endif
+		{!! Form::open(['route' => ['admin.projects.change_status',  $project->id], 'method' => 'POST', 'id' => 'form-status']) !!}
+			@if($project->status->name == "Vigente")
+				<span style="padding-top: 6px; padding-bottom: 6px; color:black;" class="label label-success">
+					{!! Form::select('status', $status, $project->status->id, ['id' => 'select-status']) !!}
+				</span>
+			@endif
 
-		@if($project->status->name == "No vigente")
-				<span class="label label-warning">{{ $project->status->name }}</span>
-		@endif
+			@if($project->status->name == "No vigente")
+				<span  style="padding-top: 6px; padding-bottom: 6px; color:black;" class="label label-warning">
+					{!! Form::select('status', $status, $project->status->id, ['id' => 'select-status']) !!}
+				</span>
+			@endif
 
-		@if($project->status->name == "Cancelado")
-				<span class="label label-danger">{{ $project->status->name }}</span>
-		@endif
+			@if($project->status->name == "Cancelado")
+				<span  style="padding-top: 6px; padding-bottom: 6px; color:black;" class="label label-danger">
+					{!! Form::select('status', $status, $project->status->id, ['id' => 'select-status']) !!}
+				</span>
+			@endif
 
-		@if($project->status->name == "No aprobado")
-			<span class="label label-default">{{ $project->status->name }}</span>
-		@endif
-		@if($project->status->name == "Concluido")
-			<span class="label label-primary">{{ $project->status->name }}</span>
-		@endif
+			@if($project->status->name == "No aprobado")
+				<span  style="padding-top: 6px; padding-bottom: 6px; color:black;" class="label label-default">
+					{!! Form::select('status', $status, $project->status->id, ['id' => 'select-status']) !!}
+				</span>
+			@endif
+			@if($project->status->name == "Concluido")
+				<span  style="padding-top: 6px; padding-bottom: 6px; color:black;" class="label label-primary">
+					{!! Form::select('status', $status, $project->status->id, ['id' => 'select-status']) !!}
+				</span>
+			@endif
 
+		{!! Form::close() !!}
 	</div>
 
 	<br>
@@ -209,5 +221,11 @@
 		<div role="tabpanel" class="tab-pane" id="settings">...</div>
 	</div>
 
-
+	@section('js')
+		<script>
+			$('#select-status').change(function() {
+				$('#form-status').submit();
+			});
+		</script>
+	@endsection
 @endsection
